@@ -44,7 +44,7 @@ const drfProvider = (apiUrl, httpClient=fetchUtils.fetchJson) => {
                 const query = {
                     page,
                     page_size: perPage,
-                    ordering: `${order === 'ASC' ? '' : '-'}${field}`,
+                    ordering: `${order === 'ASC' ? '' : '-'}${field.replace('.', '__')}`,
                     ...filter
                 };
                 url = `${apiUrl}/${resource}/?${stringify(query)}`;
@@ -57,7 +57,7 @@ const drfProvider = (apiUrl, httpClient=fetchUtils.fetchJson) => {
                 const query = {
                     page,
                     page_size: perPage,
-                    ordering: `${order === 'ASC' ? '' : '-'}${field}`,
+                    ordering: `${order === 'ASC' ? '' : '-'}${field.replace('.', '__')}`,
                     ...filter,
                     [target]: id
                 };
